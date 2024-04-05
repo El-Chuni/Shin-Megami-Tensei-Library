@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+        <title>{{title}}</title>
+
+        <link rel="stylesheet" href="/style/main.css">
+    </head>
+
+    <body>
+        
+        <header>
+            <nav>
+
+
+                <div id="search-bar">
+                    <form id="search-form" action="/buscar" method="GET">
+                        <input type="text" id="search-input" name="q" placeholder="search...">
+                        <button type="submit">Buscar</button>
+                    </form>
+                </div>
+            </nav>
+        </header>
+
+        {{{body}}}
+
+
+        <div class="footer"></div>
+    </body>
+</html>

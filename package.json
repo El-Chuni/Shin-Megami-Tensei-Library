@@ -1,0 +1,21 @@
+{
+  "name": "shin-megami-tensei-library",
+  "version": "1.0.0",
+  "description": "A library where you can search find info about SMT demons.",
+  "main": "app.js",
+  "scripts": {
+    "test": "node app.js"
+  },
+  "author": "Hernán Diaz",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.3",
+    "express-handlebars": "^7.1.2",
+    "express-session": "^1.18.0",
+    "handlebars": "^4.7.8",
+    "mongoose": "^8.2.2",
+    "mongoose-paginate-v2": "^1.8.0"
+  },
+  "type": "module"
+}

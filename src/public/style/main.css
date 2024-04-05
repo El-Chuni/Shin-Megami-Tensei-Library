@@ -1,0 +1,22 @@
+body {
+    font-family: 'MiFuente', 'Times New Roman', Times, serif, sans-serif;
+    src: url('/media/fonts/Eremaeus_Regular.woff') format('woff'); /* Ajusta la ruta según la ubicación de tu fuente */
+    font-weight: normal;
+    font-style: normal;
+    /* Utiliza el nombre definido en @font-face */
+
+    background-color: black;
+    color: white; 
+    margin: 0; 
+    padding: 0;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-image: url('/media/images/Miro.png'); 
+    background-size: cover; 
+    height: 100px; 
+}
