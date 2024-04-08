@@ -13,8 +13,8 @@ router.get('/buscar', async (req, res) => {
   const query = req.query.q;
 
   try {
-    const personajesEncontrados = await demonModel.find({ name: { $regex: new RegExp(query, 'i') } });
-    res.render('results', { personajes: personajesEncontrados });
+    const foundDemons = await demonModel.find({ name: { $regex: new RegExp(query, 'i') } });
+    res.render('results', { personajes: foundDemons });
   } catch (error) {
     console.error('Error al buscar personajes:', error);
     res.status(500).send('Error interno del servidor');

@@ -16,7 +16,13 @@ const demonSchema = new mongoose.Schema({
     race: {
         type: String,
         default: "Fiend"
-    }
+    },
+    info: [
+        {
+            title: String,
+            sectionInfo: String
+        }
+    ]
 })
 
 demonSchema.plugin(mongoosePaginate);

@@ -25,3 +25,10 @@ app.use(express.static(__dirname+'/public'));
 app.get('/', (req, res) => {
     res.render('index');
 })
+
+mongoose.connect('mongodb+srv://tratohecho02:oLA6zSP563yIhnnc@wiki-megami-tensei.vqrxszc.mongodb.net/', {
+  useNewUrlParser: true,
+  useUnifiedTopology: true
+})
+.then(() => console.log('Conexión a MongoDB establecida'))
+.catch(err => console.error('Error al conectar a MongoDB:', err));
