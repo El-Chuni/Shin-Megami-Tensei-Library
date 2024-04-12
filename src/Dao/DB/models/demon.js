@@ -17,6 +17,10 @@ const demonSchema = new mongoose.Schema({
         type: String,
         default: "Fiend"
     },
+    image: {
+        data: Buffer,
+        contentType: String
+    },
     info: [
         {
             title: String,
