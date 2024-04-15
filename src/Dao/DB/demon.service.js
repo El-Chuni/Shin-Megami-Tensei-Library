@@ -18,3 +18,5 @@ const destroyDemon = async (id) => {
     throw new Error('Error deleting demon');
   }
 }
+
+export { summonDemons, summonDemonById, createDemon, createManyDemons, modifyDemon, destroyDemon } 

@@ -2,6 +2,7 @@ import { Express } from "express";
 import session from "express-session";
 import Handlebars from "handlebars";
 import cors from 'cors';
+import searchRouter from "./routes/search.router.js";
 
 const path = require('path');
 const exphbs = require('express-handlebars');
@@ -21,6 +22,8 @@ app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname+'/public'));
+
+app.use('/api/search', searchRouter);
 
 app.get('/', (req, res) => {
     res.render('index');

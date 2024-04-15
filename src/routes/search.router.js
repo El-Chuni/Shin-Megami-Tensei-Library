@@ -1,5 +1,5 @@
 import { Express } from "express";
-import demonModel from "../../Dao/DB/models/demon"; 
+import demonModel from "../Dao/DB/models/demon.js"; 
 
 const router = Express.Router();
 
@@ -21,4 +21,4 @@ router.get('/buscar', async (req, res) => {
   }
 });
 
-module.exports = router;
+export default router;
