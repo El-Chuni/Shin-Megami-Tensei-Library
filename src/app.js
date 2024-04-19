@@ -2,7 +2,10 @@ import { Express } from "express";
 import session from "express-session";
 import Handlebars from "handlebars";
 import cors from 'cors';
+import MongoStore from "connect-mongo";
+import config from "./config/config.js";
 import searchRouter from "./routes/search.router.js";
+import cathedralRouter from "./routes/secretCathedral.router.js";
 
 const path = require('path');
 const exphbs = require('express-handlebars');
@@ -24,14 +27,31 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.static(__dirname+'/public'));
 
 app.use('/api/search', searchRouter);
+app.use('/api/cathedral', cathedralRouter);
+
 
 app.get('/', (req, res) => {
     res.render('index');
 })
 
-mongoose.connect('mongodb+srv://tratohecho02:oLA6zSP563yIhnnc@wiki-megami-tensei.vqrxszc.mongodb.net/', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
-})
-.then(() => console.log('Conexión a MongoDB establecida'))
-.catch(err => console.error('Error al conectar a MongoDB:', err));
+app.use(session({
+  store:MongoStore.create({
+    mongoUrl: config.mongoUrl,
+    mongoOptions:{useNewUrlParser: true, useUnifiedTopology: true},
+    ttl:60
+  }),
+  secret: 'magatama',
+  resave: true,
+  saveUninitialized:true
+}));
+
+const connectMongoDB = async ()=>{
+  try {
+      await mongoose.connect(config.mongoUrl);
+      console.log("Conectado con exito a MongoDB usando Moongose.");
+  } catch (error) {
+      console.error("No se pudo conectar a la BD usando Moongose: " + error);
+      process.exit();
+  }
+};
+connectMongoDB();

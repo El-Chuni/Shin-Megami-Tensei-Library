@@ -25,13 +25,13 @@ router.get('/get/:pid', summonDemonById)
 
 
 //Añade un producto al array
-router.post('/post', passport.authenticate('forbiddenForCommonUser', { failureRedirect: '/api/products/forbidden' }), upload.array(), createDemon);
+router.post('/post', passport.authenticate('forbiddenForCommonUser', { failureRedirect: '/api/cathedral/forbidden' }), upload.array(), createDemon);
   
 //Se borra un producto especifico por ID
-router.delete('/delete/:pid', passport.authenticate('forbiddenForCommonUser', { failureRedirect: '/api/products/forbidden' }), destroyDemon);
+router.delete('/delete/:pid', passport.authenticate('forbiddenForCommonUser', { failureRedirect: '/api/cathedral/forbidden' }), destroyDemon);
 
 //Se actualiza un producto por ID
-router.put('/put/:pid', passport.authenticate('forbiddenForCommonUser', { failureRedirect: '/api/products/forbidden' }), upload.array(), modifyDemon);
+router.put('/put/:pid', passport.authenticate('forbiddenForCommonUser', { failureRedirect: '/api/cathedral/forbidden' }), upload.array(), modifyDemon);
 
 
 export default router;
