@@ -34,6 +34,11 @@ app.get('/', (req, res) => {
     res.render('index');
 })
 
+router.get('/forbidden', async (req,res) => {
+  res.send("No estás autorizado para ejecutar cambios acá.");
+  customError(401, "No estás autorizado para ejecutar cambios acá.");
+})
+
 app.use(session({
   store:MongoStore.create({
     mongoUrl: config.mongoUrl,
