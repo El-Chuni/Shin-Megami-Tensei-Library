@@ -4,6 +4,19 @@ import passport from 'passport';
 
 const router = express.Router();
 
+router.get("/login", (req, res) => {
+    res.render("login");
+});
+
+router.get("/faillogin", (req, res) => {
+    alert("Wrong email and/or password, try again.")
+    res.redirect("/api/user/login");
+});
+
+router.get("/signup", (req, res) => {
+    res.render("signup");
+});
+
 // Ruta para registrar un nuevo usuario
 router.post('/signup', passport.authenticate('signup', { session: false }), async (req, res) => {
     try {

@@ -6,6 +6,7 @@ import MongoStore from "connect-mongo";
 import config from "./config/config.js";
 import searchRouter from "./routes/search.router.js";
 import cathedralRouter from "./routes/secretCathedral.router.js";
+import userRouter from "./routes/user.router.js";
 
 const path = require('path');
 const exphbs = require('express-handlebars');
@@ -28,7 +29,7 @@ app.use(express.static(__dirname+'/public'));
 
 app.use('/api/search', searchRouter);
 app.use('/api/cathedral', cathedralRouter);
-
+app.use('/api/user', userRouter);
 
 app.get('/', (req, res) => {
     res.render('index');
