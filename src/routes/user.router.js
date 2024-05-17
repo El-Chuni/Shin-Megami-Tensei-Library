@@ -1,8 +1,8 @@
-import express from 'express';
+import { Router } from 'express';
 import userModel from '../Dao/DB/models/users.js';
 import passport from 'passport';
 
-const router = express.Router();
+const router = Router();
 
 router.get("/login", (req, res) => {
     res.render("login");

@@ -1,26 +1,25 @@
-import { Express } from "express";
+import express from "express";
 import session from "express-session";
-import Handlebars from "handlebars";
+import { engine as expressHandlebars } from "express-handlebars";
+import __dirname from "./utils.js";
 import cors from 'cors';
 import MongoStore from "connect-mongo";
+import mongoose from "mongoose";
 import config from "./config/config.js";
 import searchRouter from "./routes/search.router.js";
 import cathedralRouter from "./routes/secretCathedral.router.js";
 import userRouter from "./routes/user.router.js";
 
-const path = require('path');
-const exphbs = require('express-handlebars');
-
-const app = Express();
+const app = express();
 const SERVER_PORT = 8080;
 
 const server = app.listen(SERVER_PORT, () => {
     console.log(`Welcome to the Cathedral of Shadows at ${SERVER_PORT}, where demons learn...`);
 });
 
-app.engine('handlebars', exphbs());
+app.engine('handlebars', expressHandlebars);
 app.set('view engine', 'handlebars');
-app.set('views', path.join(__dirname, 'views'));
+app.set('views', __dirname+'/views');
 
 app.use(express.json());
 app.use(cors());
@@ -35,7 +34,7 @@ app.get('/', (req, res) => {
     res.render('index');
 })
 
-router.get('/forbidden', async (req,res) => {
+app.get('/forbidden', async (req,res) => {
   res.send("No estás autorizado para ejecutar cambios acá.");
   customError(401, "No estás autorizado para ejecutar cambios acá.");
 })

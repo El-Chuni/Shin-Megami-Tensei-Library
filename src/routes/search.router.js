@@ -1,7 +1,7 @@
-import { Express } from "express";
+import { Router } from "express";
 import demonModel from "../Dao/DB/models/demon.js"; 
 
-const router = Express.Router();
+const router = Router();
 
 // Ruta para la página principal
 router.get('/', async (req, res) => {
@@ -9,7 +9,7 @@ router.get('/', async (req, res) => {
 });
 
 // Ruta para la búsqueda de personajes
-router.get('/buscar', async (req, res) => {
+router.get('/results', async (req, res) => {
   const query = req.query.q;
 
   try {
