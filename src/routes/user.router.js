@@ -20,7 +20,7 @@ router.get("/signup", (req, res) => {
 // Ruta para registrar un nuevo usuario
 router.post('/signup', passport.authenticate('signup', { session: false }), async (req, res) => {
     try {
-        res.status(201).json(req.user);
+        res.redirect('/');
     } catch (error) {
         console.error('Error al registrar usuario:', error);
         res.status(500).json({ message: 'Error interno del servidor' });
@@ -30,11 +30,16 @@ router.post('/signup', passport.authenticate('signup', { session: false }), asyn
 // Ruta para iniciar sesión
 router.post('/login', passport.authenticate('login', { session: false }), async (req, res) => {
     try {
-        res.json({ message: '¡Inicio de sesión exitoso!', user: req.user });
+        res.redirect('/');
     } catch (error) {
         console.error('Error al iniciar sesión:', error);
         res.status(500).json({ message: 'Error interno del servidor' });
     }
+});
+
+router.post('/logout', async (req, res) => {
+    req.logout();
+    res.redirect('/')
 });
   
 export default router;

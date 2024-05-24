@@ -1,14 +1,31 @@
-body {
-    font-family: 'MiFuente', 'Times New Roman', Times, serif, sans-serif;
-    src: url('/media/fonts/Eremaeus_Regular.woff') format('woff'); /* Ajusta la ruta según la ubicación de tu fuente */
+@font-face {
+    font-family: 'MiFuente';
+    src: url('/media/fonts/Eremaeus_Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-    /* Utiliza el nombre definido en @font-face */
+}
 
+body {
+    font-family: 'MiFuente', 'Times New Roman', Times, serif, sans-serif;
     background-color: black;
     color: white; 
     margin: 0; 
     padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 10px 0;
+}
+
+nav {
+    display: flex;
+    justify-content: center;
+}
+
+#search-bar {
+    margin: 10px;
 }
 
 .footer {
