@@ -30,7 +30,6 @@ app.use(express.static(__dirname+'/public'));
 app.use(session({
   store: MongoStore.create({
     mongoUrl: config.mongoUrl,
-    mongoOptions: { useNewUrlParser: true, useUnifiedTopology: true },
     ttl: 60
   }),
   secret: 'magatama',
