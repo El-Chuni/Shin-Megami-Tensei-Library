@@ -18,7 +18,7 @@ const server = app.listen(SERVER_PORT, () => {
     console.log(`Welcome to the Cathedral of Shadows at ${SERVER_PORT}, where demons learn...`);
 });
 
-app.engine('handlebars', expressHandlebars);
+app.engine('handlebars', expressHandlebars());
 app.set('view engine', 'handlebars');
 app.set('views', __dirname+'/views');
 
@@ -53,7 +53,7 @@ app.use('/api/search', searchRouter);
 app.use('/api/cathedral', cathedralRouter);
 app.use('/api/user', userRouter);
 
-app.get('/', (req, res) => {
+app.get('/', async (req, res) => {
     res.render('index');
 });
 

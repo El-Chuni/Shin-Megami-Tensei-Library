@@ -14,12 +14,6 @@
         
         <header>
             <nav>
-                <div id="search-bar">
-                    <form id="search-form" action="/api/search/results" method="GET">
-                        <input type="text" id="search-input" name="q" placeholder="search...">
-                        <button type="submit">Buscar</button>
-                    </form>
-                </div>
                 <div>
                     {{#if user}}
                         <li><a href="/api/user/logout">Cerrar Sesión</a></li>
@@ -28,6 +22,12 @@
                     {{/if}}
                 </div>
             </nav>
+            <div id="search-bar">
+                <form id="search-form" action="/api/search/results" method="GET">
+                    <input type="text" id="search-input" name="q" placeholder="search...">
+                    <button type="submit">Buscar</button>
+                </form>
+            </div>
         </header>
 
         {{{body}}}
