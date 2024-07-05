@@ -13,12 +13,13 @@
     <body>
         
         <header>
+            <img id="logo" src="media/images/SMTLogo.png" alt="">
             <nav>
-                <div>
+                <div id="userLog">
                     {{#if user}}
-                        <li><a href="/api/user/logout">Cerrar Sesión</a></li>
+                        <li><a href="/api/user/logout">Logout</a></li>
                     {{else}}
-                        <li><a href="/api/user/login">Iniciar Sesión</a></li>
+                        <li><a href="/api/user/login">Log in</a></li>
                     {{/if}}
                 </div>
             </nav>
