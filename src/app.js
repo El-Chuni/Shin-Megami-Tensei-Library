@@ -22,10 +22,10 @@ app.engine('handlebars', expressHandlebars());
 app.set('view engine', 'handlebars');
 app.set('views', __dirname+'/views');
 
+app.use(express.static(__dirname+'/public'));
 app.use(express.json());
 app.use(cors());
 app.use(express.urlencoded({ extended: true }));
-app.use(express.static(__dirname+'/public'));
 
 app.use(session({
   store: MongoStore.create({
