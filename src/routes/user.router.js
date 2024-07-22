@@ -28,14 +28,10 @@ router.post('/signup', passport.authenticate('signup', { session: false }), asyn
 });
   
 // Ruta para iniciar sesión
-router.post('/login', passport.authenticate('login', { session: false }), async (req, res) => {
-    try {
-        res.redirect('/');
-    } catch (error) {
-        console.error('Error al iniciar sesión:', error);
-        res.status(500).json({ message: 'Error interno del servidor' });
-    }
+router.post('/login', passport.authenticate('login', { failureRedirect: '/api/user/login' }), (req, res) => {
+    res.redirect('/');
 });
+  
 
 router.post('/logout', async (req, res) => {
     req.logout();

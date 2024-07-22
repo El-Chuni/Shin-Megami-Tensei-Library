@@ -72,6 +72,20 @@ passport.use(
     )
 );
 
+passport.serializeUser((user, done) => {
+  done(null, user.id);
+});
+
+passport.deserializeUser(async (id, done) => {
+  try {
+    const user = await userModel.findById(id);
+    done(null, user);
+  } catch (error) {
+    done(error);
+  }
+});
+
+
 export const isAuthenticated = (req, res, next) => {
   //Verifica si el usuario está autenticado
   if (req.isAuthenticated()) {

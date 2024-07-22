@@ -10,6 +10,7 @@ import searchRouter from "./routes/search.router.js";
 import cathedralRouter from "./routes/secretCathedral.router.js";
 import userRouter from "./routes/user.router.js";
 import passport from "passport"; 
+import "./config/auth/auth.js";
 
 const app = express();
 const SERVER_PORT = 8080;
@@ -40,12 +41,9 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
+//Middleware para añadir usuario autenticado al contexto de todas las vistas
 app.use((req, res, next) => {
-  if (req.isAuthenticated()) {
-    res.locals.user = req.user;
-  } else {
-    res.locals.user = null;
-  }
+  res.locals.user = req.isAuthenticated() ? req.user : null;
   next();
 });
 
