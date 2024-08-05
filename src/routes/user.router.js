@@ -31,11 +31,15 @@ router.post('/signup', passport.authenticate('signup', { session: false }), asyn
 router.post('/login', passport.authenticate('login', { failureRedirect: '/api/user/login' }), (req, res) => {
     res.redirect('/');
 });
-  
 
-router.post('/logout', async (req, res) => {
-    req.logout();
-    res.redirect('/')
-});
+
+router.post('/logout', (req, res) => {
+    req.logout((err) => {
+      if (err) {
+        return res.status(500).json({ message: 'Error interno del servidor' });
+      }
+      res.redirect('/');
+    });
+  });
   
 export default router;

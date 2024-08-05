@@ -2,5 +2,7 @@
     <h3>Welcome to the Cathedral of Shadows</h3>
 
     <p>If you want to look about a particular demon, use the search bar.</p>
-    <p>You can log in your account <a href="/api/user/login">here.</a></p>
+    {{#unless user}}
+        <p>You can log in your account <a href="/api/user/login">here.</a></p>
+    {{/unless}}
 </div>

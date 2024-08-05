@@ -16,9 +16,12 @@
             <nav>
                 <div id="userLog">
                     {{#if user}}
-                        <li><a href="/api/user/logout">Logout</a></li>
+                        <p>You are recognized as {{user.name}}.</p>
+                        <form action="/api/user/logout" method="POST" style="display:inline;">
+                            <button type="submit">Logout</button>
+                        </form>
                     {{else}}
-                        <li><a href="/api/user/login">Log in</a></li>
+                        <p><a href="/api/user/login">Log in</a></p>
                     {{/if}}
                 </div>
             </nav>

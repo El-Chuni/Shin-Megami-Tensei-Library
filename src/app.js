@@ -1,6 +1,6 @@
 import express from "express";
 import session from "express-session";
-import { engine as expressHandlebars } from "express-handlebars";
+import { create as createHandlebars } from "express-handlebars";
 import __dirname from "./utils.js";
 import cors from 'cors';
 import MongoStore from "connect-mongo";
@@ -10,16 +10,21 @@ import searchRouter from "./routes/search.router.js";
 import cathedralRouter from "./routes/secretCathedral.router.js";
 import userRouter from "./routes/user.router.js";
 import passport from "passport"; 
-import "./config/auth/auth.js";
+import { addUserToLocals } from "./config/auth/auth.js";
 
 const app = express();
 const SERVER_PORT = 8080;
 
 const server = app.listen(SERVER_PORT, () => {
-    console.log(`Welcome to the Cathedral of Shadows at ${SERVER_PORT}, where demons learn...`);
+  console.log(`Welcome to the Cathedral of Shadows at ${SERVER_PORT}, where demons learn...`);
 });
 
-app.engine('handlebars', expressHandlebars());
+const hbs = createHandlebars({
+  allowProtoPropertiesByDefault: true,
+  allowProtoMethodsByDefault: true
+});
+
+app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 app.set('views', __dirname+'/views');
 
@@ -40,6 +45,8 @@ app.use(session({
 
 app.use(passport.initialize());
 app.use(passport.session());
+
+app.use(addUserToLocals)
 
 //Middleware para añadir usuario autenticado al contexto de todas las vistas
 app.use((req, res, next) => {

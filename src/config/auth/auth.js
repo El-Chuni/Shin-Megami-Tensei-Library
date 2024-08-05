@@ -95,3 +95,12 @@ export const isAuthenticated = (req, res, next) => {
   //Sino se le redirecciona al principio 
   res.redirect('/forbidden');
 };
+
+export const addUserToLocals = (req, res, next) => {
+  if (req.isAuthenticated()) {
+    res.locals.user = req.user;
+  } else {
+    res.locals.user = null;
+  }
+  next();
+};
