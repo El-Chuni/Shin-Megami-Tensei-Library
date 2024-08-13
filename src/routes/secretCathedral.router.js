@@ -11,12 +11,23 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 //Lo mismo que /get pero con socket.io
-router.get('/', summonDemons);
+router.get('/', async (req, res) => {  
+    
+});
 
 
 //Carga y muestra un producto en particular
-router.get('/get/:pid', summonDemonById)
-
+router.get('/get/:pid', async (req, res) => {
+    const id = req.params.pid;
+  
+    try {
+      const summonDemon = summonDemonById(id);
+      res.render('demon', { demon: summonDemon });
+    } catch (error) {
+      console.error('Error al buscar el demonio:', error);
+      res.status(500).send('Error interno del servidor');
+    }
+});
 
 //Añade un producto al array
 router.post('/post', isAuthenticated, upload.array(), createDemon);

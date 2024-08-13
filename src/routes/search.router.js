@@ -5,7 +5,7 @@ const router = Router();
 
 // Ruta para la página principal
 router.get('/', async (req, res) => {
-  res.render('index'); // Renderiza la vista index.handlebars
+  res.render('index'); 
 });
 
 // Ruta para la búsqueda de personajes
