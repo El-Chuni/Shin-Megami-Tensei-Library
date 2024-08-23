@@ -11,8 +11,8 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage });
 
 //Lo mismo que /get pero con socket.io
-router.get('/', async (req, res) => {  
-    
+router.get('/demonCreation', async (req, res) => {  
+    res.render('demonCreator');
 });
 
 
