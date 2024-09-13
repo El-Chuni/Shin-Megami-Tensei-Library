@@ -1,6 +1,6 @@
 <div>
     <h1>Tell us about your demon:</h1>
-    <form id="demonCreation">
+    <form id="demonCreation" enctype="multipart/form-data" method="POST">
 
         <label>Name:</label>
         <input name="name">
@@ -19,8 +19,10 @@
         <label for="largeText">Info:</label>
         <textarea id="largeText" name="info" rows="10" cols="50" placeholder="Describe your demon..."></textarea>
         <br/>
-        <label>Portrait: </label> <input type="file" name="image" accept="image/*">
+        <label>Portrait: </label>
+        <input type="file" name="image" accept="image/*">
         
-        <input type="submit">
+        <input type="submit" id="submit">
     </form>
 </div>
+<script src="/js/demonCreator.js"></script>
