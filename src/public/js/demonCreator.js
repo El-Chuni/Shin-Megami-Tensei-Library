@@ -10,7 +10,7 @@ form.addEventListener('submit', (event) => {
     const formData = new FormData(form);
 
     // Realizar una solicitud POST a la ruta '/' con los datos del formulario
-    fetch('/', {
+    fetch('/api/cathedral/post', {
         method: 'POST',
         body: formData
     })

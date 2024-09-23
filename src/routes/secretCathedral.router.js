@@ -1,19 +1,38 @@
 import { Router } from "express";
 import multer from "multer";
+import fs from 'fs';
+import __dirname from "../utils.js";
 import { isAuthenticated } from "../config/auth/auth.js";
 import { summonDemons, summonDemonById, createDemon, createManyDemons, modifyDemon, destroyDemon } from "../Dao/DB/demon.service.js";
 
 //Se define el router
 const router = Router();
 
-//Aplicamos el multer para que luego se puedan subir arrays en /post y /put
-const storage = multer.memoryStorage();
-const upload = multer({ storage });
+const uploadPath = path.join(__dirname, 'public', 'demon images');
 
-//Lo mismo que /get pero con socket.io
-router.get('/demonCreation', async (req, res) => {  
-    res.render('demonCreator');
+//Verifica si la carpeta existe; si no, la crea
+if (!fs.existsSync(uploadPath)) {
+  fs.mkdirSync(uploadPath, { recursive: true });
+}
+
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, uploadPath); 
+  },
+  filename: function (req, file, cb) {
+    //Define el nombre del archivo
+    cb(null, Date.now() + '-' + file.originalname);
+  },
 });
+
+const upload = multer({ 
+  storage: storage,
+  limits: { fileSize: 1024 * 1024 * 5 }, // Limita el tamaño del archivo a 5MB
+});
+
+router.get('/demonCreation', async (req, res) => {
+  res.render('demonCreator');
+})
 
 
 //Carga y muestra un producto en particular
@@ -30,7 +49,30 @@ router.get('/get/:pid', async (req, res) => {
 });
 
 //Añade un producto al array
-router.post('/post', isAuthenticated, upload.array(), createDemon);
+router.post('/post', isAuthenticated, upload.single('image'), async (req, res) => {
+  try {
+    const { name, alignment, race, info } = req.body;
+    const image = req.file; 
+
+    const demonData = {
+      name,
+      alignment,
+      race,
+      info, 
+      image: {
+        data: image.buffer, 
+        contentType: image.mimetype, 
+      },
+    };
+
+    const newDemon = await createDemon(demonData);
+
+    res.status(201).json({ message: 'Demonio creado exitosamente', demon: newDemon });
+  } catch (error) {
+    console.error('Error al crear el demonio:', error);
+    res.status(500).send('Error interno del servidor');
+  }
+});
   
 //Se borra un producto especifico por ID
 router.delete('/delete/:pid', isAuthenticated, destroyDemon);
