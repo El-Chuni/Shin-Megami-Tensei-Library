@@ -21,12 +21,10 @@ const demonSchema = new mongoose.Schema({
         data: Buffer,
         contentType: String
     },
-    info: [
-        {
-            title: String,
-            sectionInfo: String
-        }
-    ]
+    info: {
+        type: String,
+        required: true
+    } 
 })
 
 demonSchema.plugin(mongoosePaginate);

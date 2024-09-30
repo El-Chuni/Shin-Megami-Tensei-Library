@@ -1,6 +1,7 @@
 import { Router } from "express";
 import multer from "multer";
 import fs from 'fs';
+import path from "path";
 import __dirname from "../utils.js";
 import { isAuthenticated } from "../config/auth/auth.js";
 import { summonDemons, summonDemonById, createDemon, createManyDemons, modifyDemon, destroyDemon } from "../Dao/DB/demon.service.js";
