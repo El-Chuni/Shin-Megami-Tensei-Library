@@ -3,7 +3,10 @@
   
     <ul>
         {{#each demon}}
-        <li>{{name}}</li>
+        <li>
+            <h4>{{this.name}}</h4>
+            <img src="{{this.imagePath}}" alt="{{this.name}}" style="max-width: 150px; max-height: 150px;">
+        </li>
         {{/each}}
     </ul>
 </div>

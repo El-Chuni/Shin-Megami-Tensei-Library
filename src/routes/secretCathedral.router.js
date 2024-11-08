@@ -64,6 +64,7 @@ router.post('/post', isAuthenticated, upload.single('image'), async (req, res) =
         data: image.buffer, 
         contentType: image.mimetype, 
       },
+      imagePath: `/demon images/${image.filename}`,
     };
 
     const newDemon = await createDemon(demonData);

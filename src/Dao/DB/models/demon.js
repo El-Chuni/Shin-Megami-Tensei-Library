@@ -21,6 +21,9 @@ const demonSchema = new mongoose.Schema({
         data: Buffer,
         contentType: String
     },
+    imagePath: {
+        type: String
+    },
     info: {
         type: String,
         required: true

@@ -104,3 +104,7 @@ export const addUserToLocals = (req, res, next) => {
   }
   next();
 };
+
+export const customError = (number, message) => {
+  console.log("Error " + number + ": " + message)
+}
