@@ -37,11 +37,11 @@ router.get('/demonCreation', async (req, res) => {
 
 
 //Carga y muestra un producto en particular
-router.get('/get/:pid', async (req, res) => {
-    const id = req.params.pid;
+router.get('/get/:id', async (req, res) => {
+    const id = req.params.id;
   
     try {
-      const summonDemon = summonDemonById(id);
+      const summonDemon = await summonDemonById(id);
       res.render('demon', { demon: summonDemon });
     } catch (error) {
       console.error('Error al buscar el demonio:', error);

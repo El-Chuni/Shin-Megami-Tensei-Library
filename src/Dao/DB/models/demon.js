@@ -11,7 +11,7 @@ const demonSchema = new mongoose.Schema({
     alignment: {
         type: String,
         default: "Neutral",
-        enum: ["Neutral", "Order", "Law", "Other"]
+        enum: ["Neutral", "Chaos", "Law", "Other"]
     },
     race: {
         type: String,

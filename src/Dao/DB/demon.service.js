@@ -2,7 +2,7 @@ import demonModel from "./models/demon.js";
 
 const summonDemons = async () => demonModel.find();
 
-const summonDemonById = async (id) => demonModel.findById(id);
+const summonDemonById = async (id) => demonModel.findById(id).lean();
 
 const createDemon = async (body) => demonModel.create(body);
 

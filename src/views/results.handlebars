@@ -4,7 +4,9 @@
     <ul>
         {{#each demon}}
         <li>
-            <h4>{{this.name}}</h4>
+            <a href="/api/cathedral/get/{{this._id}}">
+                <h4 id="demonName">{{this.name}}</h4>
+            </a>
             <img src="{{this.imagePath}}" alt="{{this.name}}" style="max-width: 150px; max-height: 150px;">
         </li>
         {{/each}}
