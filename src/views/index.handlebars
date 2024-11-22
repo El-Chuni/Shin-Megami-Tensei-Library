@@ -1,8 +1,23 @@
-<div style="text-align: center;">
-    <h3>Welcome to the Cathedral of Shadows</h3>
+<section>
+    <div style="text-align: center;">
+        <h3>Welcome to the Cathedral of Shadows</h3>
 
-    <p>If you want to look about a particular demon, use the search bar.</p>
-    {{#unless user}}
-        <p>You can log in your account <a href="/api/user/login">here.</a></p>
-    {{/unless}}
-</div>
+        <p>If you want to look about a particular demon, use the search bar.</p>
+        {{#unless user}}
+            <p>You can log in your account <a href="/api/user/login">here.</a></p>
+        {{/unless}}
+    </div>
+
+    <div>
+        <ul>
+            {{#each demon}}
+            <li>
+                <a href="/api/cathedral/get/{{this._id}}">
+                    <h4 id="demonName">{{this.name}}</h4>
+                </a>
+                <img src="{{this.imagePath}}" alt="{{this.name}}" style="max-width: 150px; max-height: 150px;">
+            </li>
+            {{/each}}
+        </ul>   
+    </div>
+</section>

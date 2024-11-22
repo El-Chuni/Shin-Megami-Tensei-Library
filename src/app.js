@@ -11,6 +11,7 @@ import cathedralRouter from "./routes/secretCathedral.router.js";
 import userRouter from "./routes/user.router.js";
 import passport from "passport"; 
 import { addUserToLocals } from "./config/auth/auth.js";
+import demonModel from "./Dao/DB/models/demon.js";
 
 const app = express();
 const SERVER_PORT = 8080;
@@ -59,7 +60,23 @@ app.use('/api/cathedral', cathedralRouter);
 app.use('/api/user', userRouter);
 
 app.get('/', async (req, res) => {
-    res.render('index');
+
+  try {
+
+    const allDemons = await demonModel.find().lean();
+
+    //Baraja los demonios y selecciona un máximo de 4
+    const shuffledDemons = allDemons.sort(() => 0.5 - Math.random());
+    const selectedDemons = shuffledDemons.slice(0, 4);
+
+    res.render('index', { demon: selectedDemons });
+
+  } catch (error) {
+
+    console.error('Error al obtener demonios:', error);
+    res.status(500).send('Error interno del servidor');
+
+  }
 });
 
 app.get('/forbidden', async (req, res) => {
